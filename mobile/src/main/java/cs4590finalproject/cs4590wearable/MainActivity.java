@@ -11,7 +11,7 @@ import processing.android.CompatUtils;
 import processing.core.PApplet;
 
 public class MainActivity extends AppCompatActivity {
-    private PApplet sketch;
+    public PApplet sketch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
