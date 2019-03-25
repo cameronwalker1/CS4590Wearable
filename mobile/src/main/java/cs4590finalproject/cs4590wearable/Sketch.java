@@ -47,7 +47,7 @@ public class Sketch extends PApplet {
             ay = event.values[1];
             az = event.values[2];
 //            if (rateToggle)
-            file.rate(abs((int) ax * (int) ay * (int) az) / 100);
+            file.rate(abs((int) ax * (int) ay * (int) az));
 
         }
         public void onAccuracyChanged(Sensor sensor, int accuracy) {}
