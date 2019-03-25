@@ -29,9 +29,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     wearApp project(':wear')
     implementation 'com.google.android.gms:play-services-wearable:+'
-    implementation files('/Users/saqibali/Documents/Processing/modes/AndroidMode/processing-core.jar')
-    implementation files('/Users/saqibali/Documents/Processing/libraries/sound/library/sound.jar')
-    implementation files('/Users/saqibali/Documents/Processing/libraries/controlP5/library/controlP5.jar')
-    implementation files('/Users/saqibali/Documents/Processing/libraries/sound/library/jsyn-20171016.jar')
-    implementation files('/Users/saqibali/Documents/Processing/libraries/sound/library/javamp3-1.0.3.jar')
+    implementation files('libs/sound.jar')
+    implementation files('libs/jsyn-20171016.jar')
+    implementation files('libs/javamp3-1.0.3.jar')
+    implementation files('libs/processing-core.jar')
+    implementation files('libs/controlP5.jar')
 }
