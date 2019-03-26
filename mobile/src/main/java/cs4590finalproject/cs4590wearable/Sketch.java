@@ -31,7 +31,7 @@ public class Sketch extends PApplet {
 //                .setSize(600, 600);
         context = getActivity();
         manager = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
-        sensor = manager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensor = manager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
         listener = new AccelerometerListener();
         manager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_GAME);
         textFont(createFont("SansSerif", 30 * displayDensity));
@@ -47,7 +47,7 @@ public class Sketch extends PApplet {
             ay = event.values[1];
             az = event.values[2];
 //            if (rateToggle)
-            file.rate(abs((int) ax * (int) ay * (int) az));
+            file.rate(1 + (float) 0.1 * abs( ax));
 
         }
         public void onAccuracyChanged(Sensor sensor, int accuracy) {}
@@ -65,8 +65,4 @@ public class Sketch extends PApplet {
             manager.unregisterListener(listener);
         }
     }
-
-//    void PlayBack() {
-//        rateToggle = !rateToggle;
-//    }
 }
