@@ -21,14 +21,14 @@ public class Sketch extends PApplet {
     public void settings() {fullScreen(P2D);}
 
     public void setup() {
-        file = new SoundFile(this, "techno.wav");
+        file = new SoundFile(this, "darksamus.wav");
         file.loop();
         // Create the audiosample based on the data, set framerate to play 200 oscillations/second
         cp5 = new ControlP5(this);
-//        cp5.addButton("Playback")
-//                .setCaptionLabel("Toggle Playback")
-//                .setPosition(600, 600)
-//                .setSize(600, 600);
+        cp5.addButton("Playback")
+                .setCaptionLabel("Toggle Playback")
+                .setPosition(600, 600)
+                .setSize(600, 600);
         context = getActivity();
         manager = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
         sensor = manager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
@@ -40,6 +40,9 @@ public class Sketch extends PApplet {
     public void draw() {
         background(0);
         text("X: " + ax + "\nY: " + ay + "\nZ: " + az, 0, 0, width, height);
+
+        text("Song Position: " + file.percent(),0,500,width,height);
+        text("playrate: " + (1 + (float) 0.1 * abs( ax)),0,700,width,height);
     }
     public class AccelerometerListener implements SensorEventListener {
         public void onSensorChanged(SensorEvent event) {
