@@ -16,13 +16,20 @@ public class Sketch extends PApplet {
     SensorManager manager;
     Sensor sensor;
     AccelerometerListener listener;
-    float[] axs;
+    float[] axs, ays, azs;
+    float[] vxs, vys, vzs;
     float ax, ay, az;
     boolean rateToggle;
     public void settings() {fullScreen(P2D);}
 
     public void setup() {
         axs = new float[100];
+        ays = new float[100];
+        azs = new float[100];
+
+        vxs = new float[100];
+        vys = new float[100];
+        vzs = new float[100];
 
         file = new SoundFile(this, "darksamus.wav");
         file.loop();
@@ -53,16 +60,70 @@ public class Sketch extends PApplet {
         for(int i = 0; i<axs.length - 1; i++){
             axs[axs.length-1 -i] = axs[axs.length-2-i];
         }
-        //add new data in front
-        axs[0] = ax;
+        axs[0] = ax; //add new data in front
+
+        for(int i = 0; i<ays.length - 1; i++){
+            ays[ays.length-1 -i] = ays[ays.length-2-i];
+        }
+        ays[0] = ay; //add new data in front
+
+        for(int i = 0; i<azs.length - 1; i++){
+            azs[azs.length-1 -i] = azs[azs.length-2-i];
+        }
+        azs[0] = az; //add new data in front
+
+
+
+//        for(int i = 0; i<vxs.length - 1; i++){
+//            vxs[vxs.length-1 -i] = vxs[vxs.length-2-i];
+//        }
+//        vxs[0] = vxs[1] + axs[0];
+//
+//        for(int i = 0; i<vys.length - 1; i++){
+//            vys[vys.length-1 -i] = vys[vys.length-2-i];
+//        }
+//        vys[0] = vys[1] + ays[0];
+//
+//        for(int i = 0; i<vzs.length - 1; i++){
+//            vzs[vzs.length-1 -i] = vzs[vzs.length-2-i];
+//        }
+//        vzs[0] = vzs[1] + azs[0];
+
 
         strokeWeight(4);
         color(0);
 
         //below draws the ax time line
         for(int i = 0; i<axs.length - 1; i++){
-            line(i*10, axs[i] * 100 + 1000, (i+1)*10, axs[i+1]*100 +1000);
+            line(i*10, axs[i] * 50 + 1000, (i+1)*10, axs[i+1]*50 +1000);
         }
+
+        //below draws the ax time line
+        for(int i = 0; i<ays.length - 1; i++){
+            line(i*10, ays[i] * 50 + 1200, (i+1)*10, ays[i+1]*50 +1200);
+        }
+
+        //below draws the ax time line
+        for(int i = 0; i<azs.length - 1; i++){
+            line(i*10, azs[i] * 50 + 1400, (i+1)*10, azs[i+1]*50 +1400);
+        }
+
+
+        //velocities
+//
+//        for(int i = 0; i<vxs.length - 1; i++){
+//            line(i*10, vxs[i] * 50 + 1600, (i+1)*10, vxs[i+1]*50 +1600);
+//        }
+//
+//        //below draws the ax time line
+//        for(int i = 0; i<vys.length - 1; i++){
+//            line(i*10, vys[i] * 50 + 1800, (i+1)*10, vys[i+1]*50 +1800);
+//        }
+//
+//        //below draws the ax time line
+//        for(int i = 0; i<vzs.length - 1; i++){
+//            line(i*10, vzs[i] * 50 + 2000, (i+1)*10, vzs[i+1]*50 +2000);
+//        }
 
     }
     public class AccelerometerListener implements SensorEventListener {
