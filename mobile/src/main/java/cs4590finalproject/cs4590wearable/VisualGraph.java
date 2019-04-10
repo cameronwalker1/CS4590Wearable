@@ -27,7 +27,7 @@ public class VisualGraph {
     }
 
     //calls other draw calls later to make visual generalize later
-    public void customDraw(){
+    public void draw(){
         a.strokeWeight(4);
         a.color(0);
 
@@ -35,4 +35,17 @@ public class VisualGraph {
             a.line(i*10, data[i] * 50 + 1000, (i+1)*10, data[i+1]*50 +1000);
         }
     }
+
+    // height is just the scale factor of the amplitude
+    public void draw(float x, float y, float w, float h){
+        a.strokeWeight(4);
+        a.color(0);
+
+        float spacing = w / data.length;
+
+        for(int i = 0; i<data.length - 1; i++){
+            a.line(i * spacing + x, data[i] * h + y, (i+1)* spacing + x, data[i+1]*h +y);
+        }
+    }
+
 }
