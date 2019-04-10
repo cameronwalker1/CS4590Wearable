@@ -26,7 +26,7 @@ public class Sketch extends PApplet {
     public void settings() {fullScreen(P2D);}
 
     public void setup() {
-        vg1 = new VisualGraph(100);
+        vg1 = new VisualGraph(this,100);
 
         axs = new float[100];
         ays = new float[100];

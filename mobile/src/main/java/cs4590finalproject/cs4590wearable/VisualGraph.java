@@ -2,16 +2,19 @@ package cs4590finalproject.cs4590wearable;
 
 import processing.core.PApplet;
 
-public class VisualGraph extends PApplet {
+public class VisualGraph {
     float[] data;
+    PApplet a;
 
     // default constructor with 50 data points
-    public VisualGraph() {
+    public VisualGraph(PApplet a) {
+        this.a = a;
         data = new float[50];
     }
 
     //constructor with number of values to store
-    public VisualGraph(int n) {
+    public VisualGraph(PApplet a, int n) {
+        this.a = a;
         data = new float[n];
     }
 
@@ -25,11 +28,11 @@ public class VisualGraph extends PApplet {
 
     //calls other draw calls later to make visual generalize later
     public void customDraw(){
-        strokeWeight(4);
-        color(0);
+        a.strokeWeight(4);
+        a.color(0);
 
         for(int i = 0; i<data.length - 1; i++){
-            line(i*10, data[i] * 50 + 1000, (i+1)*10, data[i+1]*50 +1000);
+            a.line(i*10, data[i] * 50 + 1000, (i+1)*10, data[i+1]*50 +1000);
         }
     }
 }
