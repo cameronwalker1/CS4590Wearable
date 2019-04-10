@@ -16,6 +16,9 @@ public class Sketch extends PApplet {
     SensorManager manager;
     Sensor sensor;
     AccelerometerListener listener;
+
+    VisualGraph vg1;
+
     float[] axs, ays, azs;
     float[] vxs, vys, vzs;
     float ax, ay, az;
@@ -23,6 +26,8 @@ public class Sketch extends PApplet {
     public void settings() {fullScreen(P2D);}
 
     public void setup() {
+        vg1 = new VisualGraph(this,100);
+
         axs = new float[100];
         ays = new float[100];
         azs = new float[100];
@@ -57,10 +62,13 @@ public class Sketch extends PApplet {
         stroke(255);
 //        line(0,0,100,100);
         //shift all data over one starting from the back
-        for(int i = 0; i<axs.length - 1; i++){
-            axs[axs.length-1 -i] = axs[axs.length-2-i];
-        }
-        axs[0] = ax; //add new data in front
+//        for(int i = 0; i<axs.length - 1; i++){
+//            axs[axs.length-1 -i] = axs[axs.length-2-i];
+//        }
+//        axs[0] = ax; //add new data in front
+//
+        vg1.updateData(ax);
+
 
         for(int i = 0; i<ays.length - 1; i++){
             ays[ays.length-1 -i] = ays[ays.length-2-i];
@@ -93,10 +101,11 @@ public class Sketch extends PApplet {
         strokeWeight(4);
         color(0);
 
+        vg1.customDraw();
         //below draws the ax time line
-        for(int i = 0; i<axs.length - 1; i++){
-            line(i*10, axs[i] * 50 + 1000, (i+1)*10, axs[i+1]*50 +1000);
-        }
+//        for(int i = 0; i<axs.length - 1; i++){
+//            line(i*10, axs[i] * 50 + 1000, (i+1)*10, axs[i+1]*50 +1000);
+//        }
 
         //below draws the ax time line
         for(int i = 0; i<ays.length - 1; i++){
