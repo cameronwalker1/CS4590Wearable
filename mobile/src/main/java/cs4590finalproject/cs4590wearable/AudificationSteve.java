@@ -40,7 +40,10 @@ public class AudificationSteve {
 
     //step function is called. might need to add thing for time.
     public void step(){
-        if (count > 1000) return;
+        if (count > 1000) {
+            count = 0;
+            return;
+        }
         count++;
         double threshold = Math.pow(listener.getX(), 2) + Math.pow(listener.getY(), 2)
                 + Math.pow(listener.getZ(), 2) * 100;
