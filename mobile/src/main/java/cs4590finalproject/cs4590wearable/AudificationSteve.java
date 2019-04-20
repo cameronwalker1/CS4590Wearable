@@ -41,9 +41,9 @@ public class AudificationSteve {
     public void step() {
         long deltaTime = System.nanoTime() - nanoTime;
         count += deltaTime;
-        if (count > 2000) {
+        if (count > 20000) {
             count = 0;
-            double threshold = Math.abs(listener.getX());
+            double threshold = Math.abs(listener.getX()) * 10;
             if (threshold > 0 && threshold < 20) {
                 file = new SoundFile(a, "cymbalHit.wav");
                 file.play();
