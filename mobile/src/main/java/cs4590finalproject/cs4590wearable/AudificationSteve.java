@@ -22,6 +22,7 @@ public class AudificationSteve {
     long count = 0;
     long nanoTime;
 
+
     public AudificationSteve(PApplet a, AccelerometerListener listener) {
         this.a = a;
         nanoTime = System.nanoTime();
@@ -41,7 +42,7 @@ public class AudificationSteve {
     public void step() {
         long deltaTime = System.nanoTime() - nanoTime;
         count += deltaTime;
-        if (count > 20000) {
+        if (count > 2000000) {
             count = 0;
             double threshold = Math.abs(listener.getX()) * 10;
             if (threshold > 0 && threshold < 20) {
