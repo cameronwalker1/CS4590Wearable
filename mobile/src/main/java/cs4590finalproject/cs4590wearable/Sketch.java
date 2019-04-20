@@ -19,8 +19,6 @@ public class Sketch extends PApplet {
 
     VisualGraph vgax, vgay, vgaz;
 
-    float[] axs, ays, azs;
-    float[] vxs, vys, vzs;
     float ax, ay, az;
     boolean rateToggle;
     public void settings() {fullScreen(P2D);}
@@ -29,15 +27,6 @@ public class Sketch extends PApplet {
         vgax = new VisualGraph(this,100);
         vgay = new VisualGraph(this,100);
         vgaz = new VisualGraph(this,100);
-
-
-        axs = new float[100];
-        ays = new float[100];
-        azs = new float[100];
-
-        vxs = new float[100];
-        vys = new float[100];
-        vzs = new float[100];
 
         file = new SoundFile(this, "darksamus.wav");
         file.loop();
