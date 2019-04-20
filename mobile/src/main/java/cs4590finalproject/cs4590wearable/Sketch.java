@@ -55,9 +55,9 @@ public class Sketch extends PApplet {
         stroke(255);
 
 
-        vgax.updateData(ax);
-        vgay.updateData(ay);
-        vgaz.updateData(az);
+        vgax.updateData(listener.getX());
+        vgay.updateData(listener.getY());
+        vgaz.updateData(listener.getZ());
 
         vgax.draw(0, 1000, 1000, 50);
         vgay.draw(0, 1250, 1000, 50);
