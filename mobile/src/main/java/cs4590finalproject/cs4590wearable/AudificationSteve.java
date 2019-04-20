@@ -43,34 +43,32 @@ public class AudificationSteve {
         count += deltaTime;
         if (count > 2000) {
             count = 0;
-            return;
-        }
-        count++;
-        double threshold = Math.abs(listener.getX());
-        if (threshold > 0 && threshold < 20) {
-            file = new SoundFile(a, "cymbalHit.wav");
-            file.play();
-        } else if (threshold > 20 && threshold < 40) {
-            file = new SoundFile(a, "cowbell.wav");
-            file.play();
-        } else if (threshold > 40 && threshold < 60) {
-            file = new SoundFile(a, "hihatHit.wav");
-            file.play();
-        } else if (threshold > 60 && threshold < 80) {
-            file = new SoundFile(a, "kickHit.wav");
-            file.play();
-        } else if (threshold > 80 && threshold < 100) {
-            file = new SoundFile(a, "singleClap.wav");
-            file.play();
-        } else if (threshold > 100 && threshold < 120) {
-            file = new SoundFile(a, "SingleTambourineHit.wav");
-            file.play();
-        } else if (threshold > 120 && threshold < 140) {
-            file = new SoundFile(a, "snareDrumSingleHit.wav");
-            file.play();
-        } else {
-            file = new SoundFile(a, "tambourineLoop.wav");
-            file.play();
+            double threshold = Math.abs(listener.getX());
+            if (threshold > 0 && threshold < 20) {
+                file = new SoundFile(a, "cymbalHit.wav");
+                file.play();
+            } else if (threshold > 20 && threshold < 40) {
+                file = new SoundFile(a, "cowbell.wav");
+                file.play();
+            } else if (threshold > 40 && threshold < 60) {
+                file = new SoundFile(a, "hihatHit.wav");
+                file.play();
+            } else if (threshold > 60 && threshold < 80) {
+                file = new SoundFile(a, "kickHit.wav");
+                file.play();
+            } else if (threshold > 80 && threshold < 100) {
+                file = new SoundFile(a, "singleClap.wav");
+                file.play();
+            } else if (threshold > 100 && threshold < 120) {
+                file = new SoundFile(a, "SingleTambourineHit.wav");
+                file.play();
+            } else if (threshold > 120 && threshold < 140) {
+                file = new SoundFile(a, "snareDrumSingleHit.wav");
+                file.play();
+            } else {
+                file = new SoundFile(a, "tambourineLoop.wav");
+                file.play();
+            }
         }
     }
 }
