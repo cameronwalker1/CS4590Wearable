@@ -42,6 +42,7 @@ public class Sketch extends PApplet {
         listener = new AccelerometerListener();
         manager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_GAME);
         textFont(createFont("SansSerif", 30 * displayDensity));
+        AudificationSteve saqib = new AudificationSteve(this, listener);
     }
 
     public void draw() {
@@ -63,17 +64,30 @@ public class Sketch extends PApplet {
         vgaz.draw(0, 1500, 1000, 50);
 
     }
+
     public class AccelerometerListener implements SensorEventListener {
+        private float ax;
+        private float ay;
+        private float az;
         public void onSensorChanged(SensorEvent event) {
             ax = event.values[0];
             ay = event.values[1];
             az = event.values[2];
-//            if (rateToggle)
-            file.rate(1 + (float) 0.1 * abs( ax));
+            //file.rate(1 + (float) 0.1 * abs( ax));
+        }
 
+        public float getX() {
+            return ax;
+        }
+        public float getY() {
+            return ay;
+        }
+        public float getZ() {
+            return az;
         }
         public void onAccuracyChanged(Sensor sensor, int accuracy) {}
     }
+
     public void onResume() {
         super.onResume();
         if (manager != null) {
