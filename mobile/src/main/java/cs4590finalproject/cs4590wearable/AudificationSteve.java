@@ -3,7 +3,6 @@ import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import cs4590finalproject.cs4590wearable.Sketch.AccelerometerListener;
-import java.util.HashMap;
 
 import controlP5.ControlP5;
 import processing.core.PApplet;
@@ -11,7 +10,6 @@ import processing.sound.SoundFile;
 
 // so the way this one will work is we will play sounds sounds when thresholds happen on the phone in a loop
 public class AudificationSteve {
-    private HashMap<Double, String> hashMap;
     SensorManager manager;
     Sensor sensor;
     Sketch.AccelerometerListener listener;
@@ -21,14 +19,14 @@ public class AudificationSteve {
     Context context;
     long count = 0;
     long nanoTime;
-    SoundFile cymbal = new SoundFile(a, "cymbalHit.wav");
-    SoundFile cowbell = new SoundFile(a, "cowbell.wav");
-    SoundFile hihatHit  = new SoundFile(a, "hihatHit.wav");
-    SoundFile kickHit = new SoundFile(a, "kickHit.wav");
-    SoundFile singleClap = new SoundFile(a, "singleClap.wav");
-    SoundFile singleTambourineHit = new SoundFile(a, "SingleTambourineHit.wav");
-    SoundFile snareDrumSingleHit = new SoundFile(a, "snareDrumSingleHit.wav");
-    SoundFile tambourineLoop = new SoundFile(a, "tambourineLoop.wav");
+    SoundFile cymbal;
+    SoundFile cowbell;
+    SoundFile hihatHit;
+    SoundFile kickHit;
+    SoundFile singleClap;
+    SoundFile singleTambourineHit;
+    SoundFile snareDrumSingleHit;
+    SoundFile tambourineLoop;
 
     public AudificationSteve(PApplet a, AccelerometerListener listener) {
         this.a = a;
@@ -43,6 +41,14 @@ public class AudificationSteve {
         this.listener = listener;
         manager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_GAME);
         a.textFont(a.createFont("SansSerif", 30 * a.displayDensity));
+        cymbal = new SoundFile(a, "cymbalHit.wav");
+        cowbell = new SoundFile(a, "cowbell.wav");
+        hihatHit  = new SoundFile(a, "hihatHit.wav");
+        kickHit = new SoundFile(a, "kickHit.wav");
+        singleClap = new SoundFile(a, "singleClap.wav");
+        singleTambourineHit = new SoundFile(a, "SingleTambourineHit.wav");
+        snareDrumSingleHit = new SoundFile(a, "snareDrumSingleHit.wav");
+        tambourineLoop = new SoundFile(a, "tambourineLoop.wav");
     }
 
     //step function is called. might need to add thing for time.
