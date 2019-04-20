@@ -16,7 +16,7 @@ public class Sketch extends PApplet {
     SensorManager manager;
     Sensor sensor;
     AccelerometerListener listener;
-
+    AudificationSteve saqib;
     VisualGraph vgax, vgay, vgaz;
 
     float ax, ay, az;
@@ -42,7 +42,7 @@ public class Sketch extends PApplet {
         listener = new AccelerometerListener();
         manager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_GAME);
         textFont(createFont("SansSerif", 30 * displayDensity));
-        AudificationSteve saqib = new AudificationSteve(this, listener);
+        saqib = new AudificationSteve(this, listener);
     }
 
     public void draw() {
@@ -62,6 +62,8 @@ public class Sketch extends PApplet {
         vgax.draw(0, 1000, 1000, 50);
         vgay.draw(0, 1250, 1000, 50);
         vgaz.draw(0, 1500, 1000, 50);
+
+        saqib.step();
 
     }
 
