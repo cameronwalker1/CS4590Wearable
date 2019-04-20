@@ -19,12 +19,12 @@ public class AudificationSteve {
     SoundFile file;
     ControlP5 cp5;
     Context context;
-    int count = 0;
-
+    long count = 0;
+    long nanoTime;
 
     public AudificationSteve(PApplet a, AccelerometerListener listener) {
         this.a = a;
-
+        nanoTime = System.nanoTime();
         file = new SoundFile(a, "darksamus.wav");
         file.loop();
         // Create the audiosample based on the data, set framerate to play 200 oscillations/second
@@ -32,15 +32,16 @@ public class AudificationSteve {
         context = a.getActivity();
         manager = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
         sensor = manager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
-//      listener = (new Sketch()).new AccelerometerListener();
         this.listener = listener;
         manager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_GAME);
         a.textFont(a.createFont("SansSerif", 30 * a.displayDensity));
     }
 
     //step function is called. might need to add thing for time.
-    public void step(){
-        if (count > 1000) {
+    public void step() {
+        long deltaTime = System.nanoTime() - nanoTime;
+        count += deltaTime;
+        if (count > 2000) {
             count = 0;
             return;
         }
