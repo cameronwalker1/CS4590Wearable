@@ -26,7 +26,7 @@ public class AudificationSteve {
         this.a = a;
         nanoTime = System.nanoTime();
         file = new SoundFile(a, "darksamus.wav");
-        file.loop();
+        //file.loop();
         // Create the audiosample based on the data, set framerate to play 200 oscillations/second
         cp5 = new ControlP5(a);
         context = a.getActivity();
@@ -46,8 +46,7 @@ public class AudificationSteve {
             return;
         }
         count++;
-        double threshold = Math.pow(listener.getX(), 2) + Math.pow(listener.getY(), 2)
-                + Math.pow(listener.getZ(), 2) * 100;
+        double threshold = Math.abs(listener.getX());
         if (threshold > 0 && threshold < 20) {
             file = new SoundFile(a, "cymbalHit.wav");
             file.play();

@@ -29,7 +29,7 @@ public class Sketch extends PApplet {
         vgaz = new VisualGraph(this,100);
 
         file = new SoundFile(this, "darksamus.wav");
-        file.loop();
+        //file.loop();
         // Create the audiosample based on the data, set framerate to play 200 oscillations/second
         cp5 = new ControlP5(this);
 //        cp5.addButton("Playback")
@@ -47,7 +47,7 @@ public class Sketch extends PApplet {
 
     public void draw() {
         background(0);
-        text("X: " + ax + "\nY: " + ay + "\nZ: " + az, 0, 0, width, height);
+        text("X: " + listener.getX() + "\nY: " + listener.getY() + "\nZ: " + listener.getZ(), 0, 0, width, height);
 
         text("Song Pos: " + file.percent(),0,500,width,height);
         text("playrate: " + (1 + (float) 0.1 * abs( ax)),0,700,width,height);
