@@ -31,7 +31,7 @@ public class AudificationSteve {
     public AudificationSteve(PApplet a, AccelerometerListener listener) {
         this.a = a;
         nanoTime = System.nanoTime();
-        file = new SoundFile(a, "darksamus.wav");
+        file = new SoundFile(a, "beat1.wav");
         file.amp(.05f);
         file.loop();
         // Create the audiosample based on the data, set framerate to play 200 oscillations/second
@@ -61,7 +61,7 @@ public class AudificationSteve {
             count = 0;
             double threshold = Math.sqrt(Math.pow(listener.getX(), 2) + Math.pow(listener.getY(), 2)
                     + Math.pow(listener.getZ(), 2)) * 10;
-            if (threshold > 0 && threshold < 20) {
+            if (threshold > 10 && threshold < 20) {
                 cymbal.play();
             } else if (threshold > 20 && threshold < 40) {
                hihatHit.play();
@@ -75,8 +75,6 @@ public class AudificationSteve {
                 singleTambourineHit.play();
             } else if (threshold > 120 && threshold < 140) {
                 snareDrumSingleHit.play();
-            } else {
-                tambourineLoop.play();
             }
         }
     }

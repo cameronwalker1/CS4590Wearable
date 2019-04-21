@@ -28,7 +28,7 @@ public class Sketch extends PApplet {
         vgay = new VisualGraph(this,100);
         vgaz = new VisualGraph(this,100);
 
-        file = new SoundFile(this, "darksamus.wav");
+        file = new SoundFile(this, "beat1.wav");
         //file.loop();
         // Create the audiosample based on the data, set framerate to play 200 oscillations/second
         cp5 = new ControlP5(this);
