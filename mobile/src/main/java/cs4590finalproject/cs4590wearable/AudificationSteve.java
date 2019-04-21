@@ -42,7 +42,7 @@ public class AudificationSteve {
         manager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_GAME);
         a.textFont(a.createFont("SansSerif", 30 * a.displayDensity));
         cymbal = new SoundFile(a, "cymbalHit.wav");
-        cowbell = new SoundFile(a, "cowbell.wav");
+//        cowbell = new SoundFile(a, "cowbell.wav");
         hihatHit  = new SoundFile(a, "hihatHit.wav");
         kickHit = new SoundFile(a, "kickHit.wav");
         singleClap = new SoundFile(a, "singleClap.wav");
@@ -55,13 +55,14 @@ public class AudificationSteve {
     public void step() {
         long deltaTime = System.nanoTime() - nanoTime;
         count += deltaTime;
-        if (count > 2000000000) {
+        nanoTime = System.nanoTime();
+        if (count > 2000000000L) {
             count = 0;
             double threshold = Math.abs(listener.getX()) * 10;
             if (threshold > 0 && threshold < 20) {
                 cymbal.play();
             } else if (threshold > 20 && threshold < 40) {
-                cowbell.play();
+               hihatHit.play();
             } else if (threshold > 40 && threshold < 60) {
                 hihatHit.play();
             } else if (threshold > 60 && threshold < 80) {
