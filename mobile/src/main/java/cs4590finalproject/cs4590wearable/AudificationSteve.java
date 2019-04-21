@@ -56,9 +56,10 @@ public class AudificationSteve {
         long deltaTime = System.nanoTime() - nanoTime;
         count += deltaTime;
         nanoTime = System.nanoTime();
-        if (count > 2000000000L) {
+        if (count > 1000000000L) {
             count = 0;
-            double threshold = Math.abs(listener.getX()) * 10;
+            double threshold = Math.sqrt(Math.pow(listener.getX(), 2) + Math.pow(listener.getY(), 2)
+                    + Math.pow(listener.getZ(), 2)) * 10;
             if (threshold > 0 && threshold < 20) {
                 cymbal.play();
             } else if (threshold > 20 && threshold < 40) {
