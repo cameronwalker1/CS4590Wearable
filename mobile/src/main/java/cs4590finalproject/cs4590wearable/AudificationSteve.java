@@ -32,6 +32,7 @@ public class AudificationSteve {
         this.a = a;
         nanoTime = System.nanoTime();
         file = new SoundFile(a, "darksamus.wav");
+        file.amp(.2f);
         file.loop();
         // Create the audiosample based on the data, set framerate to play 200 oscillations/second
         cp5 = new ControlP5(a);
