@@ -2,10 +2,17 @@ package cs4590finalproject.cs4590wearable;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+
+import controlP5.Button;
+import controlP5.RadioButton;
 import cs4590finalproject.cs4590wearable.Sketch.AccelerometerListener;
 
 import controlP5.ControlP5;
 import processing.core.PApplet;
+import processing.sound.BandPass;
+import processing.sound.HighPass;
+import processing.sound.LowPass;
+import processing.sound.Reverb;
 import processing.sound.SoundFile;
 
 // so the way this one will work is we will play sounds sounds when thresholds happen on the phone in a loop
@@ -28,7 +35,21 @@ public class AudificationSteve {
     SoundFile snareDrumSingleHit;
     SoundFile tambourineLoop;
 
+    LowPass LP;
+    Reverb RV;
+    HighPass HP;
+    BandPass BP;
+
+
+    SoundFile currentInstrument;
+    public static RadioButton switchInstrument;
+
     public AudificationSteve(PApplet a, AccelerometerListener listener) {
+        LP = new LowPass(a);
+        RV = new Reverb(a);
+        HP = new HighPass(a);
+        BP = new BandPass(a);
+
         this.a = a;
         nanoTime = System.nanoTime();
         file = new SoundFile(a, "beat1.wav");
@@ -50,6 +71,9 @@ public class AudificationSteve {
         singleTambourineHit = new SoundFile(a, "SingleTambourineHit.wav");
         snareDrumSingleHit = new SoundFile(a, "snareDrumSingleHit.wav");
         tambourineLoop = new SoundFile(a, "tambourineLoop.wav");
+
+        currentInstrument = cymbal;
+
     }
 
     //step function is called. might need to add thing for time.
@@ -58,24 +82,54 @@ public class AudificationSteve {
         count += deltaTime;
         nanoTime = System.nanoTime();
         if (count > 1000000000L) {
+
+            LP.stop();
+            RV.stop();
+            HP.stop();
+            BP.stop();
+
+
             count = 0;
             double threshold = Math.sqrt(Math.pow(listener.getX(), 2) + Math.pow(listener.getY(), 2)
                     + Math.pow(listener.getZ(), 2)) * 10;
-            if (threshold > 10 && threshold < 20) {
-                cymbal.play();
-            } else if (threshold > 20 && threshold < 40) {
-               hihatHit.play();
+            if (threshold > 20 && threshold <40 ) {
+                LP.process(currentInstrument, 800);
             } else if (threshold > 40 && threshold < 60) {
-                hihatHit.play();
-            } else if (threshold > 60 && threshold < 80) {
-               kickHit.play();
-            } else if (threshold > 80 && threshold < 100) {
-                singleClap.play();
-            } else if (threshold > 100 && threshold < 120) {
-                singleTambourineHit.play();
-            } else if (threshold > 120 && threshold < 140) {
-                snareDrumSingleHit.play();
+                RV.process(currentInstrument);
+            } else if (threshold > 60 && threshold < 100) {
+                HP.process(currentInstrument, 800);
+            } else if (threshold >= 100){
+                BP.process(currentInstrument,600, 1000);
             }
+
+            if (threshold > 20) {
+                currentInstrument.play();
+            }
+        }
+    }
+
+    public void switchInstrument(int a) {
+
+        if (a == 1) {
+            currentInstrument = hihatHit;
+        } else if (a == 2) {
+
+            currentInstrument = kickHit;
+        } else if(a == 3) {
+
+            currentInstrument = singleClap;
+        } else if(a == 4) {
+
+            currentInstrument = singleTambourineHit;
+        }else if(a == 5) {
+
+            currentInstrument = snareDrumSingleHit;
+        }else if(a == 6) {
+
+            currentInstrument = tambourineLoop;
+        } else {
+
+            currentInstrument = cymbal;
         }
     }
 }

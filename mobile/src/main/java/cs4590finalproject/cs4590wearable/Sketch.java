@@ -6,6 +6,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
+import android.os.Debug;
+import android.util.Log;
+
 import controlP5.*;
 import processing.sound.*;
 
@@ -18,6 +21,7 @@ public class Sketch extends PApplet {
     AccelerometerListener listener;
     AudificationSteve saqib;
     VisualGraph vgax, vgay, vgaz;
+    RadioButton r;
 
     float ax, ay, az;
     boolean rateToggle;
@@ -32,10 +36,16 @@ public class Sketch extends PApplet {
         //file.loop();
         // Create the audiosample based on the data, set framerate to play 200 oscillations/second
         cp5 = new ControlP5(this);
-//        cp5.addButton("Playback")
-//                .setCaptionLabel("Toggle Playback")
-//                .setPosition(600, 600)
-//                .setSize(400, 400);
+        r = cp5.addRadioButton("radioButton")
+                .setPosition(300, 1000)
+                .setSize(100, 100)
+        .addItem("hihatHit", 1)
+        .addItem("kickHit", 2)
+        .addItem("singleClap", 3)
+        .addItem("SingleTambourineHit", 4)
+        .addItem("snareDrumSingleHit", 5)
+        .addItem("tambourineLoop", 6)
+        .addItem("cymbal", 7);
         context = getActivity();
         manager = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
         sensor = manager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
@@ -102,5 +112,10 @@ public class Sketch extends PApplet {
         if (manager != null) {
             manager.unregisterListener(listener);
         }
+
+    }
+    public void radioButton(int a) {
+        Log.i("switch instrument works","custom");
+        saqib.switchInstrument(a);
     }
 }
